@@ -1,4 +1,4 @@
-unit Unit1;
+п»їunit Unit1;
 
 interface
 
@@ -220,7 +220,7 @@ begin
 
       if Statuses='()' then
       begin
-          ShowMessage('Пожалуйста, выберите статусы готовности заказов!');
+          ShowMessage('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІС‹Р±РµСЂРёС‚Рµ СЃС‚Р°С‚СѓСЃС‹ РіРѕС‚РѕРІРЅРѕСЃС‚Рё Р·Р°РєР°Р·РѕРІ!');
           Exit;
       end;
 
@@ -230,9 +230,9 @@ begin
          (Form2.Memo1.Lines.Count=0) or
          (Form3.Memo1.Lines.Count=0) then
       begin
-        ShowMessage('Кол-во телефонов и адресов не совпадает!'+#13#10+#13#10+
-                    'Кол-во телефонов: '+IntToStr(Form2.Memo1.Lines.Count)+#13#10+#13#10+
-                    'Кол-во адресов: '+IntToStr(Form3.Memo1.Lines.Count));
+        ShowMessage('РљРѕР»-РІРѕ С‚РµР»РµС„РѕРЅРѕРІ Рё Р°РґСЂРµСЃРѕРІ РЅРµ СЃРѕРІРїР°РґР°РµС‚!'+#13#10+#13#10+
+                    'РљРѕР»-РІРѕ С‚РµР»РµС„РѕРЅРѕРІ: '+IntToStr(Form2.Memo1.Lines.Count)+#13#10+#13#10+
+                    'РљРѕР»-РІРѕ Р°РґСЂРµСЃРѕРІ: '+IntToStr(Form3.Memo1.Lines.Count));
         exit;
       end;
     end;
@@ -255,7 +255,7 @@ begin
       Except
       on E:Exception do
         begin
-          ShowMessage('Произошла ошибка при подключении к БД.'+#13#10+E.ClassName+' '+E.Message+#13#10+'Обратитесь к тех. поддержке!');
+          ShowMessage('РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РїРѕРґРєР»СЋС‡РµРЅРёРё Рє Р‘Р”.'+#13#10+E.ClassName+' '+E.Message+#13#10+'РћР±СЂР°С‚РёС‚РµСЃСЊ Рє С‚РµС…. РїРѕРґРґРµСЂР¶РєРµ!');
           Exit;
         end;
       End;
@@ -266,15 +266,15 @@ begin
         Query.Connection := Connection;
         if (RadioButton7.Checked=true) or (RadioButton3.Checked=true) or (RadioButton4.Checked=true) then
           Query.SQL.Add('select distinct(d.doc_num), '+
-                        'coalesce(cast(d.date_cr as date),''Отсутствует'') as date_cr, '+
-                        'coalesce(cast(dor.date_out as date),''Отсутствует'') as date_out, '+
-                        'coalesce(cast(dor.date_out_fact as date),''Отсутствует'') as date_out_fact, '+
+                        'coalesce(cast(d.date_cr as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_cr, '+
+                        'coalesce(cast(dor.date_out as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_out, '+
+                        'coalesce(cast(dor.date_out_fact as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_out_fact, '+
                         'dor.status_id, dor.kredit, dor.debet, c.name, c.teleph_cell, (select first 1 descript from doc_order_others doo where doo.doc_order_id=dor.id order by doo.dt DESC) as comment, s.ext_info ')
         else
           Query.SQL.Add('select distinct(d.doc_num), '+
-                        'coalesce(cast(d.date_cr as date),''Отсутствует'') as date_cr, '+
-                        'coalesce(cast(dor.date_out as date),''Отсутствует'') as date_out, '+
-                        'coalesce(cast(dor.date_out_fact as date),''Отсутствует'') as date_out_fact, '+
+                        'coalesce(cast(d.date_cr as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_cr, '+
+                        'coalesce(cast(dor.date_out as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_out, '+
+                        'coalesce(cast(dor.date_out_fact as date),''РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚'') as date_out_fact, '+
                         'dor.status_id, dor.kredit, dor.debet, c.name, c.teleph_cell, (select first 1 descript from doc_order_others doo where doo.doc_order_id=dor.id order by doo.dt DESC) as comment ');
           Query.SQL.Add('from docs d ');
           Query.SQL.Add('left join deps dep on dep.dep_id=d.dep_id ');
@@ -307,7 +307,7 @@ begin
 
         if PayStr='()' then
         begin
-            ShowMessage('Пожалуйста, выберите статусы оплаты заказов!');
+            ShowMessage('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІС‹Р±РµСЂРёС‚Рµ СЃС‚Р°С‚СѓСЃС‹ РѕРїР»Р°С‚С‹ Р·Р°РєР°Р·РѕРІ!');
             Exit;
         end;
 
@@ -365,7 +365,7 @@ begin
       Except
       on E:Exception do
         begin
-          ShowMessage('Произошла ошибка при запросе к БД.'+#13#10+E.ClassName+' '+E.Message+#13#10+'Обратитесь к тех. поддержке!');
+          ShowMessage('РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё Р·Р°РїСЂРѕСЃРµ Рє Р‘Р”.'+#13#10+E.ClassName+' '+E.Message+#13#10+'РћР±СЂР°С‚РёС‚РµСЃСЊ Рє С‚РµС…. РїРѕРґРґРµСЂР¶РєРµ!');
           exit;
         end;
       End;
@@ -374,29 +374,29 @@ begin
       XL.DisplayAlerts := true;
       XL.WorkBooks.Add;
       XL.WorkBooks[1].WorkSheets[1].Name := DateToStr(DateStart) + ' - ' + DateToStr(DateEnd);
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,1] := '# заказа';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,1] := '# Р·Р°РєР°Р·Р°';
       XL.Columns[1].ColumnWidth := 10;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,2] := 'Статус заказа';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,2] := 'РЎС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р°';
       XL.Columns[2].ColumnWidth := 10;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,3] := 'Дата приема';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,3] := 'Р”Р°С‚Р° РїСЂРёРµРјР°';
       XL.Columns[3].ColumnWidth := 10;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,4] := 'Пред. дата выдачи';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,4] := 'РџСЂРµРґ. РґР°С‚Р° РІС‹РґР°С‡Рё';
       XL.Columns[4].ColumnWidth := 20;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,5] := 'Факт. дата выдачи';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,5] := 'Р¤Р°РєС‚. РґР°С‚Р° РІС‹РґР°С‡Рё';
       XL.Columns[5].ColumnWidth := 20;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,6] := 'Комментарий';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,6] := 'РљРѕРјРјРµРЅС‚Р°СЂРёР№';
       XL.Columns[6].ColumnWidth := 100;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,7] := 'Стоимость заказа';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,7] := 'РЎС‚РѕРёРјРѕСЃС‚СЊ Р·Р°РєР°Р·Р°';
       XL.Columns[7].ColumnWidth := 10;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,8] := 'Оплачено';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,8] := 'РћРїР»Р°С‡РµРЅРѕ';
       XL.Columns[8].ColumnWidth := 10;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,9] := 'ФИО клиента';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,9] := 'Р¤РРћ РєР»РёРµРЅС‚Р°';
       XL.Columns[9].ColumnWidth := 20;
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,10] := 'Телефон клиента';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,10] := 'РўРµР»РµС„РѕРЅ РєР»РёРµРЅС‚Р°';
       XL.Columns[10].ColumnWidth := 20;
       if (RadioButton7.Checked=true) or (RadioButton4.Checked=true) or (RadioButton3.Checked=true) or (CheckBox1.Checked=true) then
       begin
-      XL.WorkBooks[1].WorkSheets[1].Cells[1,11] := 'Адрес клиента';
+      XL.WorkBooks[1].WorkSheets[1].Cells[1,11] := 'РђРґСЂРµСЃ РєР»РёРµРЅС‚Р°';
       XL.Columns[11].ColumnWidth := 50;
       end;
       XL.Visible := true;
@@ -404,9 +404,9 @@ begin
       Result := TStringList.Create;
       Result.Text := 'Sep=;';
       if (RadioButton4.Checked=true) or (RadioButton7.Checked=true) or (RadioButton3.Checked=true) or (CheckBox1.Checked=true) then
-        Result.Add('# заказа;Статус заказа;Дата приема;Пред. дата выдачи;Факт. дата выдачи;Комментарий;Стоимость заказа;Оплачено;ФИО клиента;Телефон клиента;Адрес клиента')
+        Result.Add('# Р·Р°РєР°Р·Р°;РЎС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р°;Р”Р°С‚Р° РїСЂРёРµРјР°;РџСЂРµРґ. РґР°С‚Р° РІС‹РґР°С‡Рё;Р¤Р°РєС‚. РґР°С‚Р° РІС‹РґР°С‡Рё;РљРѕРјРјРµРЅС‚Р°СЂРёР№;РЎС‚РѕРёРјРѕСЃС‚СЊ Р·Р°РєР°Р·Р°;РћРїР»Р°С‡РµРЅРѕ;Р¤РРћ РєР»РёРµРЅС‚Р°;РўРµР»РµС„РѕРЅ РєР»РёРµРЅС‚Р°;РђРґСЂРµСЃ РєР»РёРµРЅС‚Р°')
       else
-        Result.Add('# заказа;Статус заказа;Дата приема;Пред. дата выдачи;Факт. дата выдачи;Комментарий;Стоимость заказа;Оплачено;ФИО клиента;Телефон клиента');
+        Result.Add('# Р·Р°РєР°Р·Р°;РЎС‚Р°С‚СѓСЃ Р·Р°РєР°Р·Р°;Р”Р°С‚Р° РїСЂРёРµРјР°;РџСЂРµРґ. РґР°С‚Р° РІС‹РґР°С‡Рё;Р¤Р°РєС‚. РґР°С‚Р° РІС‹РґР°С‡Рё;РљРѕРјРјРµРЅС‚Р°СЂРёР№;РЎС‚РѕРёРјРѕСЃС‚СЊ Р·Р°РєР°Р·Р°;РћРїР»Р°С‡РµРЅРѕ;Р¤РРћ РєР»РёРµРЅС‚Р°;РўРµР»РµС„РѕРЅ РєР»РёРµРЅС‚Р°');
       if Query.RecordCount>0 then
       begin
         Query.First;
@@ -431,15 +431,15 @@ begin
 
           OrderStatus := '';
           if Query.FieldByName('status_id').AsString='1' then
-            OrderStatus := 'Новый';
+            OrderStatus := 'РќРѕРІС‹Р№';
           if Query.FieldByName('status_id').AsString='3' then
-            OrderStatus := 'В исполнении';
+            OrderStatus := 'Р’ РёСЃРїРѕР»РЅРµРЅРёРё';
           if Query.FieldByName('status_id').AsString='4' then
-            OrderStatus := 'Исполненный';
+            OrderStatus := 'РСЃРїРѕР»РЅРµРЅРЅС‹Р№';
           if Query.FieldByName('status_id').AsString='5' then
-            OrderStatus := 'Выданный';
+            OrderStatus := 'Р’С‹РґР°РЅРЅС‹Р№';
           if Query.FieldByName('status_id').AsString='7' then
-            OrderStatus := 'Отмененный';
+            OrderStatus := 'РћС‚РјРµРЅРµРЅРЅС‹Р№';
           if CheckBox1.Checked=false then
           begin
             if (RadioButton7.Checked=true) or (RadioButton3.Checked=true) or (RadioButton4.Checked=true) then
@@ -495,14 +495,14 @@ begin
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,9] := Query.FieldByName('name').AsString;
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,10] := Query.FieldByName('teleph_cell').AsString;
               if (Query.FieldByName('ext_info').AsString<>'') and (Address<>'') then
-              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString+' или '+Address
+              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString+' РёР»Рё '+Address
               else
               if (Query.FieldByName('ext_info').AsString<>'') then
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString
               else
               if (Address<>'') then
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Address;
-              //Result.Add(Query.FieldByName('doc_num').AsString+';'+OrderStatus+';'+Query.FieldByName('date_cr').AsString+';'+Query.FieldByName('date_out').AsString+';'+Query.FieldByName('date_out_fact').AsString+';'+StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase])+';'+Query.FieldByName('kredit').AsString+';'+Query.FieldByName('debet').AsString+';'+Query.FieldByName('name').AsString+';'+Query.FieldByName('teleph_cell').AsString+';'+Query.FieldByName('ext_info').AsString+' или '+Address)
+              //Result.Add(Query.FieldByName('doc_num').AsString+';'+OrderStatus+';'+Query.FieldByName('date_cr').AsString+';'+Query.FieldByName('date_out').AsString+';'+Query.FieldByName('date_out_fact').AsString+';'+StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase])+';'+Query.FieldByName('kredit').AsString+';'+Query.FieldByName('debet').AsString+';'+Query.FieldByName('name').AsString+';'+Query.FieldByName('teleph_cell').AsString+';'+Query.FieldByName('ext_info').AsString+' РёР»Рё '+Address)
               end
               else
               begin
@@ -545,13 +545,13 @@ begin
         {PromptForFileName(ResultPath,
                           'Excel file|*.csv|',
                           '.csv',
-                          'Выберите файл',
+                          'Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р»',
                           GetCurrentDir,
                           true);
         if (ResultPath<>'') then
           XL.WorkBooks[1].SaveAs(ResultPath); }
           //Result.SaveToFile(ResultPath);
-      end else ShowMessage('Найти заказы по заданным условиям не удалось!');
+      end else ShowMessage('РќР°Р№С‚Рё Р·Р°РєР°Р·С‹ РїРѕ Р·Р°РґР°РЅРЅС‹Рј СѓСЃР»РѕРІРёСЏРј РЅРµ СѓРґР°Р»РѕСЃСЊ!');
     Finally
       If Assigned(Query) then FreeAndNil(Query);
       If Assigned(Connection) then FreeAndNil(Connection);
@@ -594,7 +594,7 @@ begin
       Except
       on E:Exception do
         begin
-          ShowMessage('Произошла ошибка при подключении к БД.'+#13#10+#13#10+E.ClassName+' '+E.Message+#13#10+#13#10+'Обратитесь к тех. поддержке!');
+          ShowMessage('РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РїРѕРґРєР»СЋС‡РµРЅРёРё Рє Р‘Р”.'+#13#10+#13#10+E.ClassName+' '+E.Message+#13#10+#13#10+'РћР±СЂР°С‚РёС‚РµСЃСЊ Рє С‚РµС…. РїРѕРґРґРµСЂР¶РєРµ!');
           Exit;
         end;
       End;
@@ -607,13 +607,13 @@ begin
           Query.Open('select * from sclads order by name');
           Query.FetchAll;
         except
-          ShowMessage('Не удалось загрузить названия складов!');
+          ShowMessage('РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РЅР°Р·РІР°РЅРёСЏ СЃРєР»Р°РґРѕРІ!');
           Application.Terminate;
         end;
 
         if Query.RecordCount<=0 then
         begin
-          ShowMessage('Не удалось загрузить названия складов!');
+          ShowMessage('РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РЅР°Р·РІР°РЅРёСЏ СЃРєР»Р°РґРѕРІ!');
           Application.Terminate;
         end else
         begin
