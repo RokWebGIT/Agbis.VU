@@ -104,125 +104,117 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-ExportData(Datepicker1.Date,Datepicker2.Date);
+  ExportData(Datepicker1.Date,Datepicker2.Date);
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-Form2.Show;
+  Form2.Show;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
-Form3.Show;
+  Form3.Show;
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
-Form4.Show;
+  Form4.Show;
 end;
 
 procedure TForm1.CheckBox11Click(Sender: TObject);
 begin
-if CheckBox11.Checked then
-begin
-Button4.Enabled := true;
-end
-else
-begin
-Button4.Enabled := false;
-end;
+  if CheckBox11.Checked then
+    Button4.Enabled := true
+  else
+    Button4.Enabled := false;
 end;
 
 procedure TForm1.CheckBox13Click(Sender: TObject);
 begin
-if CheckBox13.Checked then
-begin
-Combobox2.Enabled := true;
-end
-else
-begin
-Combobox2.Enabled := false;
-end;
+  if CheckBox13.Checked then
+    Combobox2.Enabled := true
+  else
+    Combobox2.Enabled := false;
 end;
 
 procedure TForm1.CheckBox1Click(Sender: TObject);
 begin
-if CheckBox1.Checked then
-begin
-Button2.Enabled := true;
-Button3.Enabled := true;
-end
-else
-begin
-Button2.Enabled := false;
-Button3.Enabled := false;
-end;
+  if CheckBox1.Checked then
+  begin
+    Button2.Enabled := true;
+    Button3.Enabled := true;
+  end
+  else
+  begin
+    Button2.Enabled := false;
+    Button3.Enabled := false;
+  end;
 end;
 
 procedure TForm1.ExportData(DateStart, DateEnd: TDate);
-Var
-I, J: Integer;
-Result: TStringlist;
-ResultPath: String;
-OrderStatus: String;
-SortStr: String;
-PayStr: String;
-Statuses: String;
-Address: String;
-NeedToContinue: Boolean;
-XL: OleVariant;
+  Var
+  I, J: Integer;
+  Result: TStringlist;
+  ResultPath: String;
+  OrderStatus: String;
+  SortStr: String;
+  PayStr: String;
+  Statuses: String;
+  Address: String;
+  NeedToContinue: Boolean;
+  XL: OleVariant;
 begin
 
   Try
 
-      Button1.Enabled := false;
-      GridPanel1.Enabled := false;
-      GridPanel2.Enabled := false;
-      GridPanel3.Enabled := false;
-      GridPanel5.Enabled := false;
-      GridPanel7.Enabled := false;
+    Button1.Enabled := false;
+    GridPanel1.Enabled := false;
+    GridPanel2.Enabled := false;
+    GridPanel3.Enabled := false;
+    GridPanel5.Enabled := false;
+    GridPanel7.Enabled := false;
 
-      NeedToContinue := False;
+    NeedToContinue := False;
 
-      Statuses := '';
+    Statuses := '';
 
-      ResultPath := '';
+    ResultPath := '';
 
-      Address := '';
+    Address := '';
 
-      PayStr := '';
+    PayStr := '';
 
-      SortStr := '';
+    SortStr := '';
 
 
-      if CheckBox3.Checked=True then
-      if Statuses='' then
-      Statuses := '(dor.status_id='+#39+'1'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'1'+#39+')';
+    if CheckBox3.Checked=True then
+    if Statuses='' then
+    Statuses := '(dor.status_id='+#39+'1'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'1'+#39+')';
 
-      if CheckBox4.Checked=True then
-      if Statuses='' then
-      Statuses := '(dor.status_id='+#39+'3'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'3'+#39+')';
+    if CheckBox4.Checked=True then
+    if Statuses='' then
+    Statuses := '(dor.status_id='+#39+'3'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'3'+#39+')';
 
-      if CheckBox5.Checked=True then
-      if Statuses='' then
-      Statuses := '(dor.status_id='+#39+'4'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'4'+#39+')';
+    if CheckBox5.Checked=True then
+    if Statuses='' then
+    Statuses := '(dor.status_id='+#39+'4'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'4'+#39+')';
 
-      if CheckBox6.Checked=True then
-      if Statuses='' then
-      Statuses := '(dor.status_id='+#39+'5'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'5'+#39+')';
+    if CheckBox6.Checked=True then
+    if Statuses='' then
+    Statuses := '(dor.status_id='+#39+'5'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'5'+#39+')';
 
-      if CheckBox7.Checked=True then
-      if Statuses='' then
-      Statuses := '(dor.status_id='+#39+'7'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'7'+#39+')';
+    if CheckBox7.Checked=True then
+    if Statuses='' then
+    Statuses := '(dor.status_id='+#39+'7'+#39+')' else Statuses := Statuses + ' or (dor.status_id='+#39+'7'+#39+')';
 
-      Statuses := '('+Statuses+')';
+    Statuses := '('+Statuses+')';
 
-      if Statuses='()' then
-      begin
-          ShowMessage('Пожалуйста, выберите статусы готовности заказов!');
-          Exit;
-      end;
+    if Statuses='()' then
+    begin
+        ShowMessage('Пожалуйста, выберите статусы готовности заказов!');
+        Exit;
+    end;
 
     if CheckBox1.Checked then
     begin
@@ -495,17 +487,32 @@ begin
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,9] := Query.FieldByName('name').AsString;
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,10] := Query.FieldByName('teleph_cell').AsString;
               if (Query.FieldByName('ext_info').AsString<>'') and (Address<>'') then
-              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString+' или '+Address
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString+' или '+Address
               else
-              if (Query.FieldByName('ext_info').AsString<>'') then
-              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString
-              else
-              if (Address<>'') then
-              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Address;
-              //Result.Add(Query.FieldByName('doc_num').AsString+';'+OrderStatus+';'+Query.FieldByName('date_cr').AsString+';'+Query.FieldByName('date_out').AsString+';'+Query.FieldByName('date_out_fact').AsString+';'+StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase])+';'+Query.FieldByName('kredit').AsString+';'+Query.FieldByName('debet').AsString+';'+Query.FieldByName('name').AsString+';'+Query.FieldByName('teleph_cell').AsString+';'+Query.FieldByName('ext_info').AsString+' или '+Address)
+                if (Query.FieldByName('ext_info').AsString<>'') then
+                  XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString
+                else
+                  if (Address<>'') then
+                    XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Address;
               end
               else
               begin
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1].NumberFormat := '@';
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1] := Query.FieldByName('doc_num').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,2] := OrderStatus;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,3] := Query.FieldByName('date_cr').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,4] := Query.FieldByName('date_out').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,5] := Query.FieldByName('date_out_fact').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,6] := StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase]);
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,7] := Query.FieldByName('kredit').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,8] := Query.FieldByName('debet').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,9] := Query.FieldByName('name').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,10] := Query.FieldByName('teleph_cell').AsString;
+                XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString;
+              end;
+            end
+            else
+            begin
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1].NumberFormat := '@';
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1] := Query.FieldByName('doc_num').AsString;
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,2] := OrderStatus;
@@ -517,40 +524,13 @@ begin
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,8] := Query.FieldByName('debet').AsString;
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,9] := Query.FieldByName('name').AsString;
               XL.WorkBooks[1].WorkSheets[1].Cells[I+2,10] := Query.FieldByName('teleph_cell').AsString;
-              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Query.FieldByName('ext_info').AsString;
-              //Result.Add(Query.FieldByName('doc_num').AsString+';'+OrderStatus+';'+Query.FieldByName('date_cr').AsString+';'+Query.FieldByName('date_out').AsString+';'+Query.FieldByName('date_out_fact').AsString+';'+StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase])+';'+Query.FieldByName('kredit').AsString+';'+Query.FieldByName('debet').AsString+';'+Query.FieldByName('name').AsString+';'+Query.FieldByName('teleph_cell').AsString+';'+Query.FieldByName('ext_info').AsString);
-              end;
-            end
-            else
-            begin
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1].NumberFormat := '@';
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,1] := Query.FieldByName('doc_num').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,2] := OrderStatus;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,3] := Query.FieldByName('date_cr').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,4] := Query.FieldByName('date_out').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,5] := Query.FieldByName('date_out_fact').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,6] := StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase]);
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,7] := Query.FieldByName('kredit').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,8] := Query.FieldByName('debet').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,9] := Query.FieldByName('name').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,10] := Query.FieldByName('teleph_cell').AsString;
-            XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Address;
-            //Result.Add(Query.FieldByName('doc_num').AsString+';'+OrderStatus+';'+Query.FieldByName('date_cr').AsString+';'+Query.FieldByName('date_out').AsString+';'+Query.FieldByName('date_out_fact').AsString+';'+StringReplace(Query.FieldByName('comment').AsString, #13#10, ' ',[rfReplaceAll, rfIgnoreCase])+';'+Query.FieldByName('kredit').AsString+';'+Query.FieldByName('debet').AsString+';'+Query.FieldByName('name').AsString+';'+Query.FieldByName('teleph_cell').AsString+';'+Address);
+              XL.WorkBooks[1].WorkSheets[1].Cells[I+2,11] := Address;
             end;
           end;
           Query.Next;
         end;
 
         XL.Columns.AutoFit;
-        {PromptForFileName(ResultPath,
-                          'Excel file|*.csv|',
-                          '.csv',
-                          'Выберите файл',
-                          GetCurrentDir,
-                          true);
-        if (ResultPath<>'') then
-          XL.WorkBooks[1].SaveAs(ResultPath); }
-          //Result.SaveToFile(ResultPath);
       end else ShowMessage('Найти заказы по заданным условиям не удалось!');
     Finally
       If Assigned(Query) then FreeAndNil(Query);
@@ -570,8 +550,8 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-DatePicker1.Date := IncWeek(Now,-1);
-DatePicker2.Date := Now;
+  DatePicker1.Date := IncWeek(Now,-1);
+  DatePicker2.Date := Now;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
@@ -639,39 +619,39 @@ end;
 
 procedure TForm1.RadioButton3Click(Sender: TObject);
 begin
-CheckBox2.Checked := false;
-CheckBox2.Enabled := false;
-CheckBox14.Checked := false;
-CheckBox14.Enabled := false;
-CheckBox12.Enabled := true;
+  CheckBox2.Checked := false;
+  CheckBox2.Enabled := false;
+  CheckBox14.Checked := false;
+  CheckBox14.Enabled := false;
+  CheckBox12.Enabled := true;
 end;
 
 procedure TForm1.RadioButton4Click(Sender: TObject);
 begin
-CheckBox2.Checked := false;
-CheckBox2.Enabled := false;
-CheckBox12.Checked := false;
-CheckBox12.Enabled := false;
-CheckBox14.Enabled := true;
+  CheckBox2.Checked := false;
+  CheckBox2.Enabled := false;
+  CheckBox12.Checked := false;
+  CheckBox12.Enabled := false;
+  CheckBox14.Enabled := true;
 end;
 
 procedure TForm1.RadioButton7Click(Sender: TObject);
 begin
-CheckBox12.Checked := false;
-CheckBox12.Enabled := false;
-CheckBox14.Checked := false;
-CheckBox14.Enabled := false;
-CheckBox2.Enabled := true;
+  CheckBox12.Checked := false;
+  CheckBox12.Enabled := false;
+  CheckBox14.Checked := false;
+  CheckBox14.Enabled := false;
+  CheckBox2.Enabled := true;
 end;
 
 procedure TForm1.RadioButton8Click(Sender: TObject);
 begin
-CheckBox2.Checked := false;
-CheckBox2.Enabled := false;
-CheckBox12.Checked := false;
-CheckBox12.Enabled := false;
-CheckBox14.Checked := false;
-CheckBox14.Enabled := false;
+  CheckBox2.Checked := false;
+  CheckBox2.Enabled := false;
+  CheckBox12.Checked := false;
+  CheckBox12.Enabled := false;
+  CheckBox14.Checked := false;
+  CheckBox14.Enabled := false;
 end;
 
 end.
