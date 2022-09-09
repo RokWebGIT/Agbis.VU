@@ -235,9 +235,7 @@ begin
       Connection.DriverName := 'FB';
       with Connection.Params as TFDPhysFBConnectionDefParams do
         begin
-          //Protocol := ipTCPIP;
-          //Server := 'mail.apetta.ru';
-          Server := '192.168.0.50';
+          Server := 'hidden';
           Database := 'E:\12345\DB\ARM.fdb';
           UserName := 'sysdba';
           Password := 'masterkey';
@@ -564,7 +562,7 @@ begin
       Connection.DriverName := 'FB';
       with Connection.Params as TFDPhysFBConnectionDefParams do
         begin
-          Server := '192.168.0.50';
+          Server := 'hidden';
           Database := 'E:\12345\DB\ARM.fdb';
           UserName := 'sysdba';
           Password := 'masterkey';
